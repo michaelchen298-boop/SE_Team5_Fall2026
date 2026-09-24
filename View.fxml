@@ -8,5 +8,13 @@
     <children>
         <Button fx:id="button" layoutX="126.0" layoutY="90" onAction="#handleButtonAction" text="Click Me!" />
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+        
+        <!--Text field  for updated codename -->
+        <TextField fx:id="codenameTextField" layoutX="25.0" layoutY="110.0" promptText="Enter New Codename" prefWidth="150.0" />
+        
+        <!-- button for update method-->
+        <Button fx:id="updateButton" layoutX="25.0" layoutY="150.0" onAction="#handleUpdatePlayerAction" text="Update Player" />
+    
+    </children>
     </children>
 </AnchorPane>
