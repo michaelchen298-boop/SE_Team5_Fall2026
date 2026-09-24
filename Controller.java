@@ -18,7 +18,13 @@ public class Controller {
     private Label label;
 
     private Model model;
-
+    
+    @FXML
+    private TextField idTextField;
+    
+    @FXML
+    private TextField codenameTextField;
+    
     private static final int TRANSMIT_PORT = 7500;
     private static final int RECEIVE_PORT = 7501;
 
@@ -153,5 +159,28 @@ public class Controller {
     @FXML
     private void handleButtonAction(ActionEvent event) {
         label.setText("Hello World!");
+    }
+    //added a connecting method for updating the players codename functionality - michael c
+    @FXML
+    private void handleUpdatePlayerAction(ActionEvent event) {
+        try {
+           //get the new codename first
+            int playerId = Integer.parseInt(idTextField.getText());
+            String newCodename = codenameTextField.getText();
+    
+           //calls the updateplayer method in model
+            boolean success = model.updatePlayer(playerId, newCodename);
+    
+          
+            if (success) {
+                label.setText("Success! Player " + playerId + " updated to: " + newCodename);
+                System.out.println("Player ID " + playerId + " updated successfully.");
+            } else {
+                label.setText("Update failed. Player ID may not exist.");
+            }
+    
+        } catch (NumberFormatException e) {
+            label.setText("Error: Player ID must be a valid number.");
+        }
     }
 }
