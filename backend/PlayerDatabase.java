@@ -44,4 +44,22 @@ public class PlayerDatabase {
             return false;
         }
     }
+    //I added this new update method since it asked for it in the questions - Michael C
+    public boolean updatePlayer(int id, String newCodename) {
+    String sql = "UPDATE players SET codename = ? WHERE id = ?";
+
+    try (Connection connection = Database.connect();
+         PreparedStatement statement = connection.prepareStatement(sql)) {
+
+        statement.setString(1, newCodename);
+        statement.setInt(2, id);
+
+        return statement.executeUpdate() == 1;
+
+    } catch (SQLException e) {
+        System.out.println("Player update failed.");
+        e.printStackTrace();
+        return false;
+    }
+}
 }
